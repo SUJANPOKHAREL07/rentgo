@@ -106,17 +106,17 @@ export const Signup = () => {
     <div className="bg-light-gray min-h-screen flex justify-center items-center px-4">
       <div className="w-full max-w-7xl mx-auto py-10">
         <BackButton />
-        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px] shadow-xl bg-white rounded-2xl overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px] shadow-xl bg-white rounded-2xl overflow-hidden border border-slate-100">
           {/* Left Image */}
           <div className="relative overflow-hidden h-64 lg:h-auto">
             <img
-              src="/image/image-5.png"
-              alt="signup"
+              src="/image/signup_auth_car.png"
+              alt="RentGo Signup"
               className="absolute inset-0 h-full w-full object-cover"
             />
-            <div className="absolute bottom-6 left-6 lg:bottom-8 lg:left-8 z-10 w-full text-white bg-gradient-red/50 p-4 rounded-l-xl">
-              <h1 className="text-2xl lg:text-4xl font-bold">Join Us</h1>
-              <p className="text-sm lg:text-lg max-w-sm">
+            <div className="absolute bottom-6 left-6 lg:bottom-8 lg:left-8 z-10 w-full text-white bg-emerald-950/75 backdrop-blur-sm p-5 rounded-l-xl">
+              <h1 className="text-2xl lg:text-4xl font-bold font-heading">Join RentGo</h1>
+              <p className="text-sm lg:text-lg max-w-sm text-emerald-100 mt-1">
                 Create your account to book vehicles quickly and easily.
               </p>
             </div>
@@ -124,7 +124,7 @@ export const Signup = () => {
 
           {/* Right Form */}
           <div className="flex flex-col p-6 sm:p-10 lg:p-12 space-y-5 justify-center bg-white">
-            <h1 className="text-2xl sm:text-3xl font-bold text-black">
+            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 font-heading">
               Create an Account
             </h1>
             <form className="space-y-4" onSubmit={handleSubmit}>
@@ -134,7 +134,7 @@ export const Signup = () => {
                 placeholder="Username"
                 value={form.fullname}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red outline-0"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
               />
 
               <input
@@ -143,7 +143,7 @@ export const Signup = () => {
                 placeholder="Email"
                 value={form.email}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red outline-0"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
               />
 
               <div className="relative">
@@ -153,12 +153,12 @@ export const Signup = () => {
                   placeholder="Password"
                   value={form.password}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red outline-0 pr-12"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 pr-12"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword((p) => !p)}
-                  className="absolute inset-y-0 right-3 flex items-center text-gray-500"
+                  className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-gray-600"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? <AiOutlineEyeInvisible size={22} /> : <AiOutlineEye size={22} />}
@@ -172,12 +172,12 @@ export const Signup = () => {
                   placeholder="Confirm Password"
                   value={form.confirmPassword}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red outline-0 pr-12"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 pr-12"
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword((p) => !p)}
-                  className="absolute inset-y-0 right-3 flex items-center text-gray-500"
+                  className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-gray-600"
                   aria-label={showConfirmPassword ? "Hide confirm password" : "Show confirm password"}
                 >
                   {showConfirmPassword ? <AiOutlineEyeInvisible size={22} /> : <AiOutlineEye size={22} />}
@@ -187,19 +187,19 @@ export const Signup = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-red hover:bg-gradient-red text-white py-3 px-6 rounded-xl font-semibold disabled:opacity-60"
+                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3.5 px-6 rounded-xl font-bold transition shadow-md shadow-emerald-600/20 disabled:opacity-60"
               >
                 {loading ? "Creating..." : "Sign Up"}
               </button>
             </form>
 
-            {error && <p className="text-red-600 text-sm">{error}</p>}
+            {error && <p className="text-red-500 text-sm">{error}</p>}
 
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 font-medium">
               Already have an account?{" "}
               <Link
                 to="/login"
-                className="text-red hover:underline font-medium"
+                className="text-emerald-600 hover:underline font-bold"
               >
                 Login
               </Link>

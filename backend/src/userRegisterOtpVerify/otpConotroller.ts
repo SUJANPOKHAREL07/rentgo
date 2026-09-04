@@ -3,6 +3,13 @@ import { otpService } from "./otpService";
 import { createUser } from "../Modal/userModal";
 import { createOwner } from "../Modal/adminModal";
 
+declare module "express-session" {
+  interface SessionData {
+    email?: string;
+    pendingUserData?: any;
+  }
+}
+
 export const verifyOtpController = async (req: Request, res: Response) => {
   try {
     const { otp } = req.body;

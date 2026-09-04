@@ -86,7 +86,7 @@ import type { Booking } from "../types/booking";
 
 // ✅ Create Axios instance
 const API = axios.create({
-  baseURL: "",
+  baseURL: import.meta.env.VITE_API_URL || "",
   withCredentials: true,
 });
 

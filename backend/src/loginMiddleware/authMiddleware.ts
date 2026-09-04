@@ -17,63 +17,59 @@ async function authenMiddleware(
   next: NextFunction
 ) {
   try {
-    const authenHeader =
-      req.headers.authorization || req.cookies["refresh_token"];
-    if (!authenHeader) {
+    const accessTokenCookie = req.cookies["access_token"];
+    const refreshTokenCookie = req.cookies["refresh_token"];
+    const authHeader = req.headers.authorization;
+
+    let token = accessTokenCookie || (authHeader?.startsWith("Bearer ") ? authHeader.split(" ")[1] : authHeader);
+    let payload: any = null;
+
+    if (token) {
+      try {
+        payload = verifyRefreshToken(token);
+      } catch (err) {
+        payload = null;
+      }
+    }
+
+    if (!payload && refreshTokenCookie) {
+      try {
+        payload = verifyRefreshToken(refreshTokenCookie);
+        if (payload) {
+          const isProduction = process.env.NODE_ENV === "production";
+          const newAccessToken = generateAccessToken({
+            userId: payload.userId,
+            role: payload.role,
+          });
+          res.cookie("access_token", newAccessToken, {
+            path: "/",
+            httpOnly: true,
+            secure: isProduction,
+            sameSite: isProduction ? "none" : "lax",
+            expires: new Date(Date.now() + EXPIRE_ACCESS_TOKEN * 1000),
+          });
+        }
+      } catch (err) {
+        payload = null;
+      }
+    }
+
+    if (!payload) {
       res.status(401).json({
-        message: "Token are not found in header",
-      });
-      return;
-    }
-    if (typeof authenHeader !== "string") {
-      res.status(401).json({
-        message: "Token is not in string",
-      });
-    }
-    const refreshToekn = authenHeader;
-    // check the token
-    const payload = verifyRefreshToken(refreshToekn);
-    const checkRefreshToken=await ({
-        refreshToekn:authenHeader
-    })
-    if(!checkRefreshToken){
-        res.status(401).json({
-            message:"Cannot find the token"
-        })
-        return
-    }
-    const newAccessToken=generateAccessToken({userId:payload.userId ,role:payload.role})
-        //  const EXPIRE_ACCESS_TOKEN = 150;
-    res.cookie("access_token",newAccessToken,{
-        path:'/',
-        httpOnly:true,
-        secure:true,
-        expires:new Date(Date.now() + EXPIRE_ACCESS_TOKEN * 1000)
-    })
-    req.user={
-      userId:payload.userId,
-      role:payload.role
-    }
-    next()
-  } catch(error) {
-      console.error(error);
-    if ((error as any).name === "TokenExpiredError") {
-      next({
-        status: 400,
-        message: "Token expired",
-      });
-      return;
-    }
-    if ((error as any).name === "JsonWebTokenError") {
-      next({
-        status: 400,
-        message: "Invalid token",
+        message: "Authentication token not found or invalid",
       });
       return;
     }
 
-    next({ message: "Internal server error", status: 500 });
-
+    req.user = {
+      userId: payload.userId,
+      role: payload.role,
+    };
+    next();
+  } catch (error) {
+    console.error("Auth middleware error:", error);
+    res.status(401).json({ message: "Unauthorized access" });
+    return;
   }
 }
 export {authenMiddleware}

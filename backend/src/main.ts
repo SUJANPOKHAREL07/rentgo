@@ -14,13 +14,13 @@ import cors from "cors";
 dotenv.config();
 
 const app = express();
-const PORT = 4000;
-dotenv.config();
+const PORT = process.env.PORT || 4000;
+app.set("trust proxy", 1);
 
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://vutungtung-rental.vercel.app"],
+    origin: (origin, callback) => callback(null, true),
     credentials: true,
   })
 );
@@ -48,7 +48,9 @@ app.use((req, res, next) => {
   };
   next();
 });
-
+app.use('/ping', (req, res) => {
+  res.json({ message: 'rentgo backend is running' })
+})
 app.use(
   "/uploads",
   express.static(path.join(__dirname, "../uploads/bookingLicense"))

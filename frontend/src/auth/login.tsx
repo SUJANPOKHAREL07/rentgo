@@ -20,22 +20,13 @@ type LoginResponse = {
   email: string;
   role: "user" | "admin";
   token?: string;
+  data?: any;
 };
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email"),
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
-
-// Helper functions
-const generateNameFromEmail = (email: string): string => {
-  if (!email) return "User";
-  const username = email.split("@")[0];
-  return username
-    .split(".")
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(" ");
-};
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -162,33 +153,33 @@ export const Login = () => {
   return (
     <div className="bg-light-gray min-h-screen flex justify-center items-center px-4">
       <div className="w-full max-w-7xl mx-auto py-10">
-        <div className="mb-3">
+        <div className="mb-4">
           <NavLink
-            className="font-semibold flex items-center text-gradient-red gap-2"
+            className="font-semibold flex items-center text-emerald-600 hover:text-emerald-700 gap-2 transition"
             to={"/"}
           >
             <RiHome5Line size={20} />
-            <strong>Home</strong>
+            <span>Back to Home</span>
           </NavLink>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px] shadow-xl bg-white rounded-2xl overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px] shadow-xl bg-white rounded-2xl overflow-hidden border border-slate-100">
           <div className="relative overflow-hidden h-64 lg:h-auto">
             <img
-              src="/image/img-3.png"
-              alt="login"
+              src="/image/login_auth_car.png"
+              alt="RentGo Login"
               className="absolute inset-0 h-full w-full object-cover"
             />
-            <div className="absolute bottom-6 left-6 lg:bottom-8 lg:left-8 z-10 w-full text-white bg-gradient-red/50 p-4 rounded-l-xl">
-              <h1 className="text-2xl lg:text-4xl font-bold">Welcome Back</h1>
-              <p className="text-sm lg:text-lg max-w-sm">
-                Log in to continue booking vehicles quickly and securely.
+            <div className="absolute bottom-6 left-6 lg:bottom-8 lg:left-8 z-10 w-full text-white bg-emerald-950/75 backdrop-blur-sm p-5 rounded-l-xl">
+              <h1 className="text-2xl lg:text-4xl font-bold font-heading">Welcome Back</h1>
+              <p className="text-sm lg:text-lg max-w-sm text-emerald-100 mt-1">
+                Log in to RentGo to manage your bookings quickly and securely.
               </p>
             </div>
           </div>
 
-          <div className="flex flex-col p-6 sm:p-10 lg:p-12 space-y-5 justify-center bg-[#FFFFFF]">
-            <h1 className="text-2xl sm:text-3xl font-bold black">
+          <div className="flex flex-col p-6 sm:p-10 lg:p-12 space-y-5 justify-center bg-white">
+            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 font-heading">
               Login to Your Account
             </h1>
 
@@ -198,7 +189,7 @@ export const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
-                className="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-red"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
               />
               <div className="relative">
                 <input
@@ -206,12 +197,12 @@ export const Login = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password"
-                  className="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-red pr-12"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 pr-12"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword((p) => !p)}
-                  className="absolute inset-y-0 right-3 flex items-center text-gray-500"
+                  className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-gray-600"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? <AiOutlineEyeInvisible size={22} /> : <AiOutlineEye size={22} />}
@@ -221,19 +212,19 @@ export const Login = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-red text-white py-3 px-6 rounded-xl font-semibold disabled:opacity-60"
+                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3.5 px-6 rounded-xl font-bold transition shadow-md shadow-emerald-600/20 disabled:opacity-60"
               >
                 {loading ? "Logging in..." : "Login"}
               </button>
 
-              {error && <p className="text-red-600 mt-2">{error}</p>}
+              {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
             </form>
 
-            <div className="flex justify-between text-sm text-gray-600">
-              <Link to="/forgot-password" className="hover:underline">
+            <div className="flex justify-between text-sm text-gray-600 font-medium pt-2">
+              <Link to="/forgot-password" className="hover:text-emerald-600 hover:underline">
                 Forgot Password?
               </Link>
-              <Link to="/signup" className="text-red hover:underline">
+              <Link to="/signup" className="text-emerald-600 hover:underline font-bold">
                 Create Account
               </Link>
             </div>

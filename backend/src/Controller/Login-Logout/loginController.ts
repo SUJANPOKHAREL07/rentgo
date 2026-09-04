@@ -39,24 +39,16 @@ const loginUser = async (req: Request, res: Response) => {
       return;
     }
 
-    // Determine account and password
-    const account = user ?? admin;
-    if (!account.password) {
+    // Determine account password (handle admin schema 'passowrd' vs user 'password')
+    const accountPassword = user?.password ?? admin?.passowrd;
+    if (!accountPassword) {
       res.status(500).json({ message: "No password found for account" });
       return;
     }
 
-    const isValid = await comparePassword(password, account.password);
+    const isValid = await comparePassword(password, accountPassword);
     if (!isValid) {
       res.status(400).json({ message: "Password did not match" });
-      return;
-    }
-
-    // Check if already logged in
-    // const loggedIn = await checkAlreadyLoggedIn(email);
-    const getrefreshToken = req.cookies["refresh_token"];
-    if (getrefreshToken) {
-      res.status(401).json({ message: "Cannot login twice" });
       return;
     }
 
@@ -64,6 +56,7 @@ const loginUser = async (req: Request, res: Response) => {
     const isAdmin = !!admin;
     const userId = Number(user?.userId ?? admin?.adminId);
     const role = isAdmin ? "admin" : "user";
+    const userName = user?.username ?? admin?.ownername ?? email.split("@")[0];
 
     // Create token payload
     const userPayload: Tokenload = {
@@ -75,18 +68,20 @@ const loginUser = async (req: Request, res: Response) => {
     const refreshToken = generateRefreshToken(userPayload);
     const accessToken = generateAccessToken(userPayload);
 
-    // Set cookies
+    const isProduction = process.env.NODE_ENV === "production";
+
+    // Set cookies (sameSite: "none" in production for cross-site frontend/backend deployment)
     res.cookie("refresh_token", refreshToken, {
       path: "/",
-      sameSite: "lax",
-      secure: true,
+      sameSite: isProduction ? "none" : "lax",
+      secure: isProduction,
       httpOnly: true,
       expires: new Date(Date.now() + EXPIRE_REFRESH_TOKEN * 1000),
     });
     res.cookie("access_token", accessToken, {
       path: "/",
-      secure: true,
-      sameSite: "lax",
+      sameSite: isProduction ? "none" : "lax",
+      secure: isProduction,
       httpOnly: true,
       expires: new Date(Date.now() + EXPIRE_ACCESS_TOKEN * 1000),
     });
@@ -96,14 +91,24 @@ const loginUser = async (req: Request, res: Response) => {
       userId: user?.userId ?? null,
       adminId: admin?.adminId ?? null,
       email,
-      password: account.password,
+      password: accountPassword,
       refreshToken,
       role,
     });
 
+    const userInfo = {
+      id: userId,
+      name: userName,
+      username: userName,
+      email,
+      role,
+      token: accessToken,
+    };
+
     res.status(200).json({
       message: "Logged In",
       role,
+      user: userInfo,
       data: createLogin,
     });
     return;

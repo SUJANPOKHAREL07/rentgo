@@ -5,6 +5,7 @@ import { getAvatar } from "../lib/avatar";
 export type User = {
   id: string;
   name: string;
+  username?: string;
   email: string;
   role: "user" | "admin";
   avatar?: string;

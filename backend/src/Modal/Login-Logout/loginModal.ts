@@ -48,6 +48,7 @@ async function checkExistingUser(email: string) {
       password: true,
       userId: true,
       email: true,
+      username: true,
     },
   });
 
@@ -63,6 +64,7 @@ async function checkExistingAdmin(email: string): Promise<any> {
       adminId: true,
       passowrd: true,
       email: true,
+      ownername: true,
     },
   });
 
