@@ -18,9 +18,30 @@ const PORT = process.env.PORT || 4000;
 app.set("trust proxy", 1);
 
 app.use(cookieParser());
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  "http://localhost:5173",
+  "http://localhost:3000",
+  "http://localhost:4000",
+].filter(Boolean) as string[];
+
 app.use(
   cors({
-    origin: (origin, callback) => callback(null, true),
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps, curl, or server-to-server calls)
+      if (!origin) return callback(null, true);
+
+      const isAllowed =
+        allowedOrigins.includes(origin) ||
+        origin.endsWith(".vercel.app") ||
+        process.env.NODE_ENV !== "production";
+
+      if (isAllowed) {
+        callback(null, true);
+      } else {
+        callback(new Error(`CORS origin ${origin} not allowed`));
+      }
+    },
     credentials: true,
   })
 );
