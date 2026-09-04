@@ -685,7 +685,6 @@ import { useState, useEffect, useContext } from "react";
 import {
   useNavigate,
   useParams,
-  useSearchParams,
   useLocation,
 } from "react-router-dom";
 import { IoLocationOutline } from "react-icons/io5";
@@ -707,7 +706,7 @@ import { AuthContext } from "../context/AuthContext";
 const ConfirmBooking = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [searchParams] = useSearchParams();
+  // const [searchParams] = useSearchParams();
   const location = useLocation();
   const auth = useContext(AuthContext);
 
@@ -719,7 +718,7 @@ const ConfirmBooking = () => {
   const [loading, setLoading] = useState(!vehicle);
   const [error, setError] = useState("");
 
- 
+
   const [paymentInfo, setPaymentInfo] = useState({
     method: "esewa",
     cardNumber: "",
@@ -910,20 +909,18 @@ const ConfirmBooking = () => {
                   return (
                     <div
                       key={index}
-                      className={`flex flex-col items-center ${
-                        isActive
+                      className={`flex flex-col items-center ${isActive
                           ? "text-red"
                           : isCompleted
-                          ? "text-gray-400"
-                          : ""
-                      }`}
+                            ? "text-gray-400"
+                            : ""
+                        }`}
                     >
                       <div
-                        className={`w-10 h-10 font-bold flex items-center justify-center rounded-full border-2 ${
-                          isActive || isCompleted
+                        className={`w-10 h-10 font-bold flex items-center justify-center rounded-full border-2 ${isActive || isCompleted
                             ? "border-red bg-red text-white"
                             : "border-light-gray bg-light-gray"
-                        }`}
+                          }`}
                       >
                         {isCompleted ? "✓" : stepNumber}
                       </div>
@@ -1085,15 +1082,13 @@ const ConfirmBooking = () => {
                     <button
                       type="button"
                       disabled={!paymentInfo.agreed}
-                      className={`border rounded-lg p-3 w-full transition ${
-                        paymentInfo.method === "esewa"
+                      className={`border rounded-lg p-3 w-full transition ${paymentInfo.method === "esewa"
                           ? "bg-green-500 text-white border-green-500"
                           : "bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
-                      } ${
-                        !paymentInfo.agreed
+                        } ${!paymentInfo.agreed
                           ? "opacity-50 cursor-not-allowed"
                           : "cursor-pointer"
-                      }`}
+                        }`}
                       onClick={() => {
                         if (!paymentInfo.agreed) {
                           alert("Please agree to Terms and Conditions first.");

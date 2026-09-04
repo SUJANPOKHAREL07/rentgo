@@ -93,7 +93,7 @@ const Wishlist = () => {
                 </p>
 
                 <div className="flex items-center justify-between">
-                  <span className="text-lg font-bold text-red-400">
+                  <span className="text-lg font-bold text-emerald-400 font-heading">
                     Rs. {car.pricePerDay}/day
                   </span>
                   <button
@@ -101,7 +101,7 @@ const Wishlist = () => {
                       e.stopPropagation(); // prevent double navigation
                       handleBookNow(car.id);
                     }}
-                    className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-300"
+                    className="bg-emerald-600 text-white px-4 py-2 rounded-xl font-medium hover:bg-emerald-700 transition duration-300 shadow-md shadow-emerald-600/20"
                   >
                     Book Now
                   </button>

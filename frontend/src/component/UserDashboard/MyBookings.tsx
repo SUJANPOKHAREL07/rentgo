@@ -151,9 +151,9 @@ const MyBookings = () => {
             <button
               key={status}
               onClick={() => handleFilter(status)}
-              className={`px-4 py-2 rounded-lg text-sm font-semibold transition duration-200 ${
+              className={`px-4 py-2 rounded-xl text-sm font-bold transition duration-200 ${
                 filter === status
-                  ? "bg-red-600 text-white shadow-md"
+                  ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/20"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
               }`}
             >
@@ -167,7 +167,7 @@ const MyBookings = () => {
           {/* Sort Button */}
           <button
             onClick={handleSortToggle}
-            className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-semibold text-gray-700 transition"
+            className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-xl text-sm font-semibold text-gray-700 transition"
           >
             <FiCalendar size={16} />
             {sortOrder === "recent" ? "Recent First" : "Oldest First"}
@@ -177,9 +177,9 @@ const MyBookings = () => {
           <div className="flex gap-2">
             <button
               onClick={() => setView("card")}
-              className={`p-2 rounded-lg transition ${
+              className={`p-2.5 rounded-xl transition ${
                 view === "card"
-                  ? "bg-red-600 text-white shadow-md"
+                  ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/20"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
               }`}
             >
@@ -187,9 +187,9 @@ const MyBookings = () => {
             </button>
             <button
               onClick={() => setView("list")}
-              className={`p-2 rounded-lg transition ${
+              className={`p-2.5 rounded-xl transition ${
                 view === "list"
-                  ? "bg-red-600 text-white shadow-md"
+                  ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/20"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
               }`}
             >
@@ -213,21 +213,21 @@ const MyBookings = () => {
               key={idx}
               className={`rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 ${
                 b.deliverystatus === "dilivered"
-                  ? "border-green-200 bg-gradient-to-br from-green-50 to-white"
+                  ? "border-emerald-200 bg-gradient-to-br from-emerald-50/50 to-white"
                   : b.deliverystatus === "cancled"
-                  ? "border-red-200 bg-gradient-to-br from-red-50 to-white"
-                  : "border-yellow-200 bg-gradient-to-br from-yellow-50 to-white"
+                  ? "border-red-200 bg-gradient-to-br from-red-50/50 to-white"
+                  : "border-amber-200 bg-gradient-to-br from-amber-50/50 to-white"
               }`}
             >
               {/* Status Badge */}
               <div className="p-4 pb-0">
                 <span
-                  className={`inline-block px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider ${
+                  className={`inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider ${
                     b.deliverystatus === "dilivered"
-                      ? "bg-green-500 text-white"
+                      ? "bg-emerald-600 text-white"
                       : b.deliverystatus === "cancled"
                       ? "bg-red-500 text-white"
-                      : "bg-yellow-500 text-white"
+                      : "bg-amber-500 text-white"
                   }`}
                 >
                   {b.deliverystatus}
@@ -238,8 +238,8 @@ const MyBookings = () => {
               <div className="p-6">
                 {/* Vehicle Info */}
                 <div className="mb-4">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-1 flex items-center gap-2">
-                    <MdDirectionsCar className="text-gray-600" />
+                  <h3 className="text-2xl font-bold text-slate-900 mb-1 flex items-center gap-2 font-heading">
+                    <MdDirectionsCar className="text-emerald-600" />
                     {b.vehicleName}
                   </h3>
                   <p className="text-sm text-gray-600 font-medium">
@@ -252,7 +252,7 @@ const MyBookings = () => {
                   {/* Dates */}
                   <div className="flex items-start gap-2 text-sm">
                     <FiCalendar
-                      className="text-gray-500 mt-1 flex-shrink-0"
+                      className="text-emerald-600 mt-1 flex-shrink-0"
                       size={16}
                     />
                     <div className="flex-1">
@@ -278,7 +278,7 @@ const MyBookings = () => {
                   {/* Location */}
                   <div className="flex items-start gap-2 text-sm">
                     <FiMapPin
-                      className="text-gray-500 mt-1 flex-shrink-0"
+                      className="text-emerald-600 mt-1 flex-shrink-0"
                       size={16}
                     />
                     <div className="flex-1">
@@ -293,7 +293,7 @@ const MyBookings = () => {
                   {/* Payment */}
                   <div className="flex items-start gap-2 text-sm">
                     <FiCreditCard
-                      className="text-gray-500 mt-1 flex-shrink-0"
+                      className="text-emerald-600 mt-1 flex-shrink-0"
                       size={16}
                     />
                     <div className="flex-1">
@@ -302,8 +302,8 @@ const MyBookings = () => {
                         <span
                           className={`ml-2 px-2 py-0.5 rounded-full text-xs font-semibold ${
                             b.paymentStatus === "completed"
-                              ? "bg-green-100 text-green-700"
-                              : "bg-yellow-100 text-yellow-700"
+                              ? "bg-emerald-100 text-emerald-700"
+                              : "bg-amber-100 text-amber-700"
                           }`}
                         >
                           {b.paymentStatus === "completed" ? "Paid" : "Pending"}
@@ -325,7 +325,7 @@ const MyBookings = () => {
                     <span className="text-gray-600 font-medium">
                       Total Amount
                     </span>
-                    <span className="text-2xl font-bold text-red-600">
+                    <span className="text-2xl font-bold text-emerald-600 font-heading">
                       Rs. {b.price}
                     </span>
                   </div>

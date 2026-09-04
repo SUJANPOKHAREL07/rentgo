@@ -66,9 +66,10 @@ const Nav = () => {
           {/* Logo */}
           <NavLink
             to="/"
-            className="font-heading text-xl md:text-2xl lg:text-3xl font-black"
+            className="font-heading text-xl md:text-2xl lg:text-3xl font-black tracking-wider flex items-center gap-1"
           >
-            <span className="text-red">VUTUNG</span>TUNG
+            <span className="text-emerald-600">RENT</span>
+            <span className="text-slate-900">GO</span>
           </NavLink>
 
           {/* Desktop Menu */}
@@ -78,9 +79,9 @@ const Nav = () => {
                 <NavLink
                   to="/"
                   className={({ isActive }) =>
-                    `relative transition-colors duration-200 hover:text-red ${
+                    `relative transition-colors duration-200 hover:text-emerald-600 ${
                       isActive
-                        ? "text-red font-semibold after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-red after:rounded-full"
+                        ? "text-emerald-600 font-semibold after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-emerald-600 after:rounded-full"
                         : "text-gray-700"
                     }`
                   }
@@ -91,9 +92,9 @@ const Nav = () => {
                 <NavLink
                   to="/vehicles"
                   className={({ isActive }) =>
-                    `relative transition-colors duration-200 hover:text-red ${
+                    `relative transition-colors duration-200 hover:text-emerald-600 ${
                       isActive
-                        ? "text-red font-semibold after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-red after:rounded-full"
+                        ? "text-emerald-600 font-semibold after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-emerald-600 after:rounded-full"
                         : "text-gray-700"
                     }`
                   }
@@ -104,9 +105,9 @@ const Nav = () => {
                 <NavLink
                   to="/about"
                   className={({ isActive }) =>
-                    `relative transition-colors duration-200 hover:text-red ${
+                    `relative transition-colors duration-200 hover:text-emerald-600 ${
                       isActive
-                        ? "text-red font-semibold after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-red after:rounded-full"
+                        ? "text-emerald-600 font-semibold after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-emerald-600 after:rounded-full"
                         : "text-gray-700"
                     }`
                   }
@@ -117,9 +118,9 @@ const Nav = () => {
                 <NavLink
                   to="/contact"
                   className={({ isActive }) =>
-                    `relative transition-colors duration-200 hover:text-red ${
+                    `relative transition-colors duration-200 hover:text-emerald-600 ${
                       isActive
-                        ? "text-red font-semibold after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-red after:rounded-full"
+                        ? "text-emerald-600 font-semibold after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-emerald-600 after:rounded-full"
                         : "text-gray-700"
                     }`
                   }
@@ -133,9 +134,9 @@ const Nav = () => {
               <>
                 <NavLink
                   className={({ isActive }) =>
-                    `relative transition-colors duration-200 hover:text-red ${
+                    `relative transition-colors duration-200 hover:text-emerald-600 ${
                       isActive
-                        ? "text-red font-semibold after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-red after:rounded-full"
+                        ? "text-emerald-600 font-semibold after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-emerald-600 after:rounded-full"
                         : "text-gray-700"
                     }`
                   }
@@ -145,9 +146,9 @@ const Nav = () => {
                 </NavLink>
                 <NavLink
                   className={({ isActive }) =>
-                    `relative transition-colors duration-200 hover:text-red ${
+                    `relative transition-colors duration-200 hover:text-emerald-600 ${
                       isActive
-                        ? "text-red font-semibold after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-red after:rounded-full"
+                        ? "text-emerald-600 font-semibold after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-emerald-600 after:rounded-full"
                         : "text-gray-700"
                     }`
                   }
@@ -157,9 +158,9 @@ const Nav = () => {
                 </NavLink>
                 <NavLink
                   className={({ isActive }) =>
-                    `relative transition-colors duration-200 hover:text-red ${
+                    `relative transition-colors duration-200 hover:text-emerald-600 ${
                       isActive
-                        ? "text-red font-semibold after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-red after:rounded-full"
+                        ? "text-emerald-600 font-semibold after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-emerald-600 after:rounded-full"
                         : "text-gray-700"
                     }`
                   }
@@ -169,9 +170,9 @@ const Nav = () => {
                 </NavLink>
                 <NavLink
                   className={({ isActive }) =>
-                    `relative transition-colors duration-200 hover:text-red ${
+                    `relative transition-colors duration-200 hover:text-emerald-600 ${
                       isActive
-                        ? "text-red font-semibold after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-red after:rounded-full"
+                        ? "text-emerald-600 font-semibold after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-emerald-600 after:rounded-full"
                         : "text-gray-700"
                     }`
                   }
@@ -187,7 +188,7 @@ const Nav = () => {
           <div className="hidden md:flex font-semibold items-center gap-5">
             {!user ? (
               <NavLink
-                className="py-2 px-3 rounded-lg hover:bg-gradient-red bg-red duration-200 w-[8rem] text-center text-white border"
+                className="py-2.5 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-700 duration-200 text-center text-white font-medium shadow-md shadow-emerald-600/20 hover:shadow-lg transition-all"
                 to="/login"
               >
                 Sign in
@@ -196,7 +197,7 @@ const Nav = () => {
               <button
                 onClick={handleLogout}
                 disabled={isLoggingOut}
-                className="py-2 px-3 hover:bg-red hover:text-white duration-300 rounded-lg flex justify-center items-center gap-2 bg-gray-200 text-black disabled:opacity-50"
+                className="py-2 px-4 hover:bg-emerald-600 hover:text-white duration-300 rounded-xl flex justify-center items-center gap-2 bg-emerald-50 text-emerald-800 font-medium disabled:opacity-50"
               >
                 {isLoggingOut ? "Logging out..." : "Logout"}
                 <MdLogout size={20} />
@@ -206,7 +207,7 @@ const Nav = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="text-foreground duration-300 active:bg-red p-2 rounded-md active:text-white transform transition-transform ease-in-out block md:hidden"
+            className="text-foreground duration-300 active:bg-emerald-600 p-2 rounded-md active:text-white transform transition-transform ease-in-out block md:hidden"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <RxCross2 size={24} /> : <IoMdMenu size={24} />}
@@ -217,7 +218,7 @@ const Nav = () => {
       {/* Mobile Dropdown */}
       {isOpen && (
         <div
-          className={`md:hidden fixed top-16 right-0 py-10 h-full w-full bg-white/90 backdrop-blur-xs text-red font-medium flex flex-col p-5 space-y-3 z-40 shadow-lg transform transition-transform duration-300 ease-in-out ${
+          className={`md:hidden fixed top-16 right-0 py-10 h-full w-full bg-white/95 backdrop-blur-md text-emerald-700 font-medium flex flex-col p-5 space-y-4 z-40 shadow-lg transform transition-transform duration-300 ease-in-out ${
             isOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >
@@ -227,7 +228,7 @@ const Nav = () => {
                 Home
               </NavLink>
               <NavLink
-                to="/available-vehicles"
+                to="/vehicles"
                 onClick={() => setIsOpen(false)}
               >
                 Available Vehicles
@@ -256,7 +257,7 @@ const Nav = () => {
                 Home
               </NavLink>
               <NavLink
-                to="/available-vehicles"
+                to="/vehicles"
                 onClick={() => setIsOpen(false)}
               >
                 Available Vehicles
@@ -271,7 +272,7 @@ const Nav = () => {
                 Contact
               </NavLink>
               <button
-                className="py-2 px-3 bg-red text-white duration-300 rounded-lg flex justify-center items-center gap-2 disabled:opacity-50"
+                className="py-2.5 px-4 bg-emerald-600 text-white duration-300 rounded-xl flex justify-center items-center gap-2 disabled:opacity-50 shadow-md"
                 onClick={handleLogout}
                 disabled={isLoggingOut}
               >

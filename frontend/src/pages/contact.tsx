@@ -44,14 +44,14 @@ export const Contact = () => {
           {/* Left Side with Image */}
           <div className="relative h-64 overflow-hidden lg:h-auto">
             <img
-              src="/image/image-7.png"
-              alt="image"
+              src="/image/login_auth_car.png"
+              alt="RentGo Contact Us"
               className="absolute inset-0 h-full w-full object-cover"
             />
-            <div className="absolute bottom-6 left-6 lg:bottom-8 lg:left-8 z-10 w-full text-white bg-gradient-red/50 p-4 rounded-l-xl">
-              <h1 className="text-2xl lg:text-4xl font-bold">Get in Touch</h1>
-              <p className="text-sm lg:text-lg max-w-sm">
-                We're here to help you with any questions about our vehicle
+            <div className="absolute bottom-6 left-6 lg:bottom-8 lg:left-8 z-10 w-full text-white bg-emerald-950/75 backdrop-blur-sm p-5 rounded-l-xl">
+              <h1 className="text-2xl lg:text-4xl font-bold font-heading">Get in Touch</h1>
+              <p className="text-sm lg:text-lg max-w-sm text-emerald-100 mt-1">
+                We're here to help you with any questions about RentGo's vehicle
                 rental services.
               </p>
             </div>
@@ -59,10 +59,10 @@ export const Contact = () => {
 
           {/* Right Side with Form */}
           <div className="flex flex-col p-6 sm:p-10 lg:p-12 space-y-5 justify-center bg-white">
-            <h1 className="text-2xl sm:text-3xl font-bold text-black">
+            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 font-heading">
               Send us a Message
             </h1>
-            <p className="text-gray-400 text-sm sm:text-base">
+            <p className="text-gray-500 text-sm sm:text-base">
               Fill out the form below and we'll get back to you as soon as
               possible.
             </p>
@@ -72,21 +72,21 @@ export const Contact = () => {
               <input
                 type="text"
                 placeholder="Your Name"
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
               />
               <input
                 type="email"
                 placeholder="Your Email"
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
               />
               <textarea
                 placeholder="Your Message"
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                 rows={4}
               ></textarea>
               <button
                 type="submit"
-                className="w-full bg-red hover:bg-gradient-red text-white py-3 px-6 rounded-xl font-semibold transition"
+                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3.5 px-6 rounded-xl font-bold transition shadow-md shadow-emerald-600/20"
               >
                 Send Message
               </button>

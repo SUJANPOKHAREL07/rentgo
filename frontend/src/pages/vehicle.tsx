@@ -3,7 +3,6 @@ import axios from "axios";
 import { MdOutlineFilterAltOff } from "react-icons/md";
 import VehicleCard from "../component/VehicleCard";
 import Pagination from "../component/pagination";
-import { FaRegHeart, FaHeart } from "react-icons/fa";
 
 interface VehicleType {
   v_id: string | number;
@@ -224,7 +223,7 @@ const Vehicle = () => {
                   fuelType: "",
                 })
               }
-              className="border bg-red h-fit hover:bg-gradient-red duration-300 inline-flex justify-center items-center text-white font-medium border-border rounded-xl px-3 py-2 w-full"
+              className="bg-emerald-600 hover:bg-emerald-700 h-fit duration-300 inline-flex justify-center items-center text-white font-medium rounded-xl px-4 py-2.5 w-full shadow-md shadow-emerald-600/20"
             >
               <MdOutlineFilterAltOff size={25} /> Clear Filter
             </button>

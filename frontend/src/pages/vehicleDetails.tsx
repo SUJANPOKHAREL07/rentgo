@@ -214,7 +214,7 @@ const VehicleDetails = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-600"></div>
       </div>
     );
   }
@@ -223,12 +223,12 @@ const VehicleDetails = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <p className="text-red-500 text-lg mb-4">
+          <p className="text-emerald-600 text-lg mb-4">
             {error || "Vehicle not found"}
           </p>
           <button
-            onClick={() => navigate("/available-vehicles")}
-            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+            onClick={() => navigate("/vehicles")}
+            className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 font-medium"
           >
             Back to Vehicles
           </button>
@@ -270,12 +270,12 @@ const VehicleDetails = () => {
   const formattedMinPickupDate = minPickupDate.toISOString().split("T")[0];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-slate-50 py-8">
       <div className="max-w-7xl mx-auto px-4">
         {/* Back Button */}
         <button
           onClick={() => navigate("/vehicles")}
-          className="mb-6 flex items-center text-gray-600 hover:text-gray-800"
+          className="mb-6 flex items-center text-gray-600 hover:text-emerald-600 font-medium transition"
         >
           <svg
             className="w-5 h-5 mr-2"
@@ -296,7 +296,7 @@ const VehicleDetails = () => {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Vehicle Info */}
           <div className="flex-1 space-y-6">
-            <div className="relative w-full h-96 rounded-xl overflow-hidden shadow-lg">
+            <div className="relative w-full h-96 rounded-2xl overflow-hidden shadow-lg">
               <img
                 src={images[currentImage]}
                 alt={vehicle.name}
@@ -309,13 +309,13 @@ const VehicleDetails = () => {
                 <>
                   <button
                     onClick={prevImage}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/30 text-white p-3 rounded-full hover:bg-black/50 transition"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 text-white p-3 rounded-full hover:bg-black/60 transition"
                   >
                     {"<"}
                   </button>
                   <button
                     onClick={nextImage}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/30 text-white p-3 rounded-full hover:bg-black/50 transition"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 text-white p-3 rounded-full hover:bg-black/60 transition"
                   >
                     {">"}
                   </button>
@@ -325,7 +325,7 @@ const VehicleDetails = () => {
 
             <div className="flex justify-between items-center">
               <div>
-                <h1 className="text-3xl font-bold text-gray-900">
+                <h1 className="text-3xl font-bold text-slate-900 font-heading">
                   {vehicle.name}
                 </h1>
                 <p className="text-gray-500 mt-1">
@@ -335,7 +335,7 @@ const VehicleDetails = () => {
                 </p>
               </div>
               <div className="text-right">
-                <p className="text-2xl font-bold text-red-600">
+                <p className="text-3xl font-bold text-emerald-600 font-heading">
                   Rs. {pricePerDay}
                 </p>
                 <span className="text-gray-500 text-sm">per day</span>
@@ -343,7 +343,7 @@ const VehicleDetails = () => {
             </div>
 
             <div className="space-y-3">
-              <h2 className="text-xl font-semibold border-t pt-5">
+              <h2 className="text-xl font-semibold border-t pt-5 text-slate-900 font-heading">
                 About Vehicle
               </h2>
               <p className="text-gray-600 text-justify">
@@ -353,27 +353,27 @@ const VehicleDetails = () => {
 
             {/* Vehicle Specs */}
             <div className="space-y-3">
-              <h2 className="text-xl font-semibold">Specifications</h2>
+              <h2 className="text-xl font-semibold text-slate-900 font-heading">Specifications</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="flex items-center gap-2 p-3 bg-white rounded-lg shadow">
-                  <LuUsers className="text-red-500" size={20} />
+                <div className="flex items-center gap-3 p-4 bg-white rounded-xl shadow-sm border border-slate-100">
+                  <LuUsers className="text-emerald-600" size={24} />
                   <div>
-                    <p className="font-semibold">{vehicle.seatingCapacity}</p>
-                    <p className="text-sm text-gray-500">Seats</p>
+                    <p className="font-bold text-slate-900">{vehicle.seatingCapacity}</p>
+                    <p className="text-xs text-gray-500">Seats</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 p-3 bg-white rounded-lg shadow">
-                  <IoSettingsOutline className="text-red-500" size={20} />
+                <div className="flex items-center gap-3 p-4 bg-white rounded-xl shadow-sm border border-slate-100">
+                  <IoSettingsOutline className="text-emerald-600" size={24} />
                   <div>
-                    <p className="font-semibold">{vehicle.transmission}</p>
-                    <p className="text-sm text-gray-500">Transmission</p>
+                    <p className="font-bold text-slate-900">{vehicle.transmission}</p>
+                    <p className="text-xs text-gray-500">Transmission</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 p-3 bg-white rounded-lg shadow">
-                  <LuFuel className="text-red-500" size={20} />
+                <div className="flex items-center gap-3 p-4 bg-white rounded-xl shadow-sm border border-slate-100">
+                  <LuFuel className="text-emerald-600" size={24} />
                   <div>
-                    <p className="font-semibold">{vehicle.fuelType}</p>
-                    <p className="text-sm text-gray-500">Fuel Type</p>
+                    <p className="font-bold text-slate-900">{vehicle.fuelType}</p>
+                    <p className="text-xs text-gray-500">Fuel Type</p>
                   </div>
                 </div>
               </div>
@@ -381,12 +381,12 @@ const VehicleDetails = () => {
 
             {vehicle.features && vehicle.features.length > 0 && (
               <div className="space-y-3">
-                <h2 className="text-xl font-semibold">What's Included</h2>
+                <h2 className="text-xl font-semibold text-slate-900 font-heading">What's Included</h2>
                 <div className="grid grid-cols-2 gap-3">
                   {vehicle.features.map((feature, idx) => (
                     <div
                       key={idx}
-                      className="flex items-center gap-2 text-green-600 font-medium"
+                      className="flex items-center gap-2 text-emerald-600 font-medium"
                     >
                       <FaCheckCircle />
                       <span className="text-gray-700">{feature}</span>
@@ -398,8 +398,8 @@ const VehicleDetails = () => {
           </div>
 
           {/* Booking Card */}
-          <div className="lg:w-[400px] w-full bg-white p-6 rounded-xl shadow-lg sticky top-20 space-y-5">
-            <h2 className="text-2xl font-bold text-gray-900">
+          <div className="lg:w-[400px] w-full bg-white p-6 rounded-2xl shadow-lg border border-slate-100 sticky top-20 space-y-5">
+            <h2 className="text-2xl font-bold text-slate-900 font-heading">
               Book This Vehicle
             </h2>
 
@@ -413,7 +413,7 @@ const VehicleDetails = () => {
                 <select
                   value={pickupLocation}
                   onChange={(e) => setPickupLocation(e.target.value)}
-                  className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-red-500 focus:outline-none"
+                  className="w-full border border-gray-300 rounded-xl p-2.5 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:outline-none"
                   required
                 >
                   <option value="" disabled>
@@ -440,7 +440,7 @@ const VehicleDetails = () => {
                 <select
                   value={returnLocation}
                   onChange={(e) => setReturnLocation(e.target.value)}
-                  className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-red-500 focus:outline-none"
+                  className="w-full border border-gray-300 rounded-xl p-2.5 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:outline-none"
                   required
                 >
                   <option value="">Select Return City</option>
@@ -466,7 +466,7 @@ const VehicleDetails = () => {
                     type="date"
                     value={pickupDate}
                     onChange={(e) => setPickupDate(e.target.value)}
-                    className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-red-500 focus:outline-none"
+                    className="w-full border border-gray-300 rounded-xl p-2.5 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:outline-none text-sm"
                     required
                     min={formattedMinPickupDate}
                   />
@@ -480,7 +480,7 @@ const VehicleDetails = () => {
                     value={returnDate}
                     onChange={(e) => setReturnDate(e.target.value)}
                     min={pickupDate || new Date().toISOString().split("T")[0]}
-                    className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-red-500 focus:outline-none"
+                    className="w-full border border-gray-300 rounded-xl p-2.5 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:outline-none text-sm"
                     required
                   />
                 </div>
@@ -488,12 +488,12 @@ const VehicleDetails = () => {
             </div>
 
             {/* License Verification */}
-            <div className="border border-gray-200 bg-gray-50 p-4 rounded-lg space-y-3">
+            <div className="border border-emerald-100 bg-emerald-50/50 p-4 rounded-xl space-y-3">
               <div>
-                <h3 className="font-semibold text-gray-900">
+                <h3 className="font-semibold text-slate-900">
                   License Verification
                 </h3>
-                <p className="text-xs text-red-500">Required*</p>
+                <p className="text-xs text-emerald-600 font-medium">Required*</p>
               </div>
 
               <input
@@ -502,16 +502,16 @@ const VehicleDetails = () => {
                 value={licenseNumber}
                 onChange={(e) => setLicenseNumber(e.target.value)}
                 required
-                className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-red-500 focus:outline-none"
+                className="w-full border border-gray-300 bg-white rounded-xl p-2.5 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:outline-none text-sm"
               />
 
-              <div className="border-2 border-dashed border-gray-300 hover:border-red-500 transition-all p-4 rounded-lg text-center cursor-pointer">
+              <div className="border-2 border-dashed border-emerald-300 hover:border-emerald-500 bg-white transition-all p-4 rounded-xl text-center cursor-pointer">
                 <label
                   htmlFor="licenseUpload"
                   className="flex flex-col items-center justify-center w-full h-full cursor-pointer"
                 >
-                  <LuCloudUpload className="w-8 h-8 text-red-500 mb-2" />
-                  <p className="font-medium text-gray-700">
+                  <LuCloudUpload className="w-8 h-8 text-emerald-600 mb-2" />
+                  <p className="font-medium text-gray-700 text-sm">
                     {licenseFile
                       ? licenseFile.name
                       : "Upload your license image"}
@@ -533,7 +533,7 @@ const VehicleDetails = () => {
               </div>
 
               {!licenseFile && (
-                <p className="text-xs text-red-500 text-center">
+                <p className="text-xs text-gray-500 text-center">
                   Please upload your license image*
                 </p>
               )}
@@ -541,8 +541,8 @@ const VehicleDetails = () => {
 
             {/* Price Breakdown */}
             {pickupDate && returnDate && (
-              <div className="border-t pt-4 space-y-2 text-gray-700">
-                <h3 className="text-lg font-semibold">Price Breakdown</h3>
+              <div className="border-t border-gray-100 pt-4 space-y-2 text-gray-700">
+                <h3 className="text-lg font-semibold text-slate-900">Price Breakdown</h3>
                 <div className="flex justify-between">
                   <span>Daily Rate</span>
                   <span>Rs. {pricePerDay}</span>
@@ -580,9 +580,9 @@ const VehicleDetails = () => {
                       )}
                   </span>
                 </div>
-                <div className="flex justify-between font-bold text-lg border-t pt-2">
+                <div className="flex justify-between font-bold text-xl text-slate-900 border-t border-gray-100 pt-3">
                   <span>Total</span>
-                  <span>Rs. {calculateTotal()}</span>
+                  <span className="text-emerald-600 font-heading">Rs. {calculateTotal()}</span>
                 </div>
               </div>
             )}
@@ -591,17 +591,17 @@ const VehicleDetails = () => {
             <div className="space-y-3">
               <button
                 onClick={handleBookNow}
-                className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg py-3 transition"
+                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl py-3.5 shadow-md shadow-emerald-600/20 transition-all"
               >
                 Proceed to Payment
               </button>
 
               <button
                 onClick={handleWishlist}
-                className={`w-full border rounded-lg py-3 flex items-center justify-center gap-2 font-semibold transition ${
+                className={`w-full border rounded-xl py-3 flex items-center justify-center gap-2 font-semibold transition ${
                   isWishlisted
-                    ? "bg-red-600 text-white hover:bg-red-700"
-                    : "border-red-600 text-red-600 hover:bg-red-50"
+                    ? "bg-emerald-600 text-white hover:bg-emerald-700 border-emerald-600"
+                    : "border-emerald-600 text-emerald-600 hover:bg-emerald-50"
                 }`}
               >
                 {isWishlisted ? <FaHeart /> : <FaRegHeart />}

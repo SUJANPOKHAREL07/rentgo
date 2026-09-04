@@ -123,32 +123,7 @@ const Payment = () => {
     }
   };
 
-  const cancelBooking = async (bookingId: number) => {
-    try {
-      setLoading(true);
-      setError("");
 
-      const url = `http://localhost:4000/vehicle/book/cancel-booking/${bookingId}`;
-      const response = await fetch(url, {
-        method: "POST",
-        credentials: "include",
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Cancellation failed");
-      }
-
-      return true;
-    } catch (err: any) {
-      const msg = err.message || "Unknown error";
-      setError(msg);
-      console.error("Booking cancellation failed:", msg);
-      return false;
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handlePayment = async () => {
     if (!bookingData) return;
@@ -174,10 +149,10 @@ const Payment = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <p className="text-red-500 text-lg mb-4">No booking data found</p>
+          <p className="text-emerald-600 text-lg mb-4">No booking data found</p>
           <button
-            onClick={() => navigate("/available-vehicles")}
-            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+            onClick={() => navigate("/vehicles")}
+            className="px-4 py-2 bg-emerald-600 text-white rounded-xl font-medium hover:bg-emerald-700 shadow-md"
           >
             Back to Vehicles
           </button>
@@ -187,11 +162,11 @@ const Payment = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-slate-50 py-8">
       <div className="max-w-4xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl font-bold text-slate-900 mb-2 font-heading">
             Complete Your Payment
           </h1>
           <p className="text-gray-600">Secure payment processing with eSewa</p>
@@ -199,63 +174,63 @@ const Payment = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Booking Summary */}
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">
+          <div className="bg-white rounded-2xl shadow-lg border border-slate-100 p-6">
+            <h2 className="text-xl font-bold text-slate-900 mb-6 font-heading">
               Booking Summary
             </h2>
 
             <div className="space-y-4">
-              <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
+              <div className="flex justify-between items-center p-4 bg-emerald-50/50 border border-emerald-100 rounded-xl">
                 <div>
-                  <h3 className="font-semibold text-gray-900">
+                  <h3 className="font-semibold text-slate-900">
                     {bookingData.vehicleName}
                   </h3>
-                  <p className="text-sm text-gray-600">Vehicle Rental</p>
+                  <p className="text-sm text-emerald-700 font-medium">Vehicle Rental</p>
                 </div>
                 <div className="text-right">
-                  <p className="font-semibold text-gray-900">
+                  <p className="font-semibold text-slate-900">
                     Rs. {bookingData.pricePerDay}
                   </p>
-                  <p className="text-sm text-gray-600">per day</p>
+                  <p className="text-sm text-gray-500">per day</p>
                 </div>
               </div>
 
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Pickup Location:</span>
-                  <span className="font-medium">
+                  <span className="font-medium text-slate-900">
                     {bookingData.pickuplocation}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Return Location:</span>
-                  <span className="font-medium">
+                  <span className="font-medium text-slate-900">
                     {bookingData.droplocation}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Pickup Date:</span>
-                  <span className="font-medium">
+                  <span className="font-medium text-slate-900">
                     {new Date(bookingData.bookingDate).toLocaleDateString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Return Date:</span>
-                  <span className="font-medium">
+                  <span className="font-medium text-slate-900">
                     {new Date(bookingData.returnDate).toLocaleDateString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Duration:</span>
-                  <span className="font-medium">{bookingData.days} days</span>
+                  <span className="font-medium text-slate-900">{bookingData.days} days</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">License Number:</span>
-                  <span className="font-medium">{bookingData.licenseNo}</span>
+                  <span className="font-medium text-slate-900">{bookingData.licenseNo}</span>
                 </div>
               </div>
 
-              <div className="border-t pt-4 space-y-2">
+              <div className="border-t border-gray-100 pt-4 space-y-2">
                 <div className="flex justify-between">
                   <span>Daily Rate ({bookingData.days} days)</span>
                   <span>Rs. {bookingData.pricePerDay * bookingData.days}</span>
@@ -268,22 +243,22 @@ const Payment = () => {
                   <span>Insurance Fee</span>
                   <span>Rs. {bookingData.insuranceFee}</span>
                 </div>
-                <div className="flex justify-between font-bold text-lg border-t pt-2">
+                <div className="flex justify-between font-bold text-xl border-t border-gray-100 pt-3">
                   <span>Total Amount</span>
-                  <span className="text-red-600">Rs. {bookingData.price}</span>
+                  <span className="text-emerald-600 font-heading">Rs. {bookingData.price}</span>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Payment Section */}
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">
+          <div className="bg-white rounded-2xl shadow-lg border border-slate-100 p-6">
+            <h2 className="text-xl font-bold text-slate-900 mb-6 font-heading">
               Payment Method
             </h2>
 
             {error && (
-              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
                 <p className="text-red-700 text-sm">{error}</p>
               </div>
             )}
@@ -301,7 +276,7 @@ const Payment = () => {
                 name="paymentMethod"
                 value={selectedPaymentMethod}
                 onChange={(e) => setSelectedPaymentMethod(e.target.value)}
-                className="mt-1 block w-full pl-3 pr-10 py-2 border text-base border-gray-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded-md"
+                className="mt-1 block w-full pl-3 pr-10 py-2.5 border text-base border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-xl"
               >
                 <option value="eSewa">eSewa</option>
                 <option value="CashOnDelivery">Cash on Delivery</option>
@@ -310,15 +285,15 @@ const Payment = () => {
 
             {/* Security Features */}
             <div className="mb-6 space-y-3">
-              <div className="flex items-center gap-2 text-green-600">
+              <div className="flex items-center gap-2 text-emerald-600 font-medium">
                 <FaShieldAlt size={16} />
                 <span className="text-sm">256-bit SSL encryption</span>
               </div>
-              <div className="flex items-center gap-2 text-green-600">
+              <div className="flex items-center gap-2 text-emerald-600 font-medium">
                 <FaLock size={16} />
                 <span className="text-sm">Secure payment processing</span>
               </div>
-              <div className="flex items-center gap-2 text-green-600">
+              <div className="flex items-center gap-2 text-emerald-600 font-medium">
                 <FaCheckCircle size={16} />
                 <span className="text-sm">Instant confirmation</span>
               </div>
@@ -374,7 +349,7 @@ const Payment = () => {
                   type="button"
                   onClick={handlePayment}
                   disabled={loading}
-                  className="w-full bg-green-600 hover:bg-green-700 disabled:bg-gray-400 text-white font-semibold py-4 rounded-lg transition-colors flex items-center justify-center gap-2"
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 disabled:bg-gray-400 text-white font-bold py-4 rounded-xl transition-colors shadow-md shadow-emerald-600/20 flex items-center justify-center gap-2"
                 >
                   {loading ? (
                     <>
@@ -401,7 +376,7 @@ const Payment = () => {
               <button
                 onClick={handlePayment}
                 disabled={loading}
-                className="w-full bg-red-600 hover:bg-red-700 disabled:bg-gray-400 text-white font-semibold py-4 rounded-lg transition-colors flex items-center justify-center gap-2"
+                className="w-full bg-emerald-600 hover:bg-emerald-700 disabled:bg-gray-400 text-white font-bold py-4 rounded-xl transition-colors shadow-md shadow-emerald-600/20 flex items-center justify-center gap-2"
               >
                 {loading ? (
                   <>
@@ -420,7 +395,7 @@ const Payment = () => {
                 onClick={() =>
                   navigate("/vehicles/" + bookingData.vehicleId)
                 }
-                className="w-full border border-gray-300 text-gray-700 py-3 rounded-lg hover:bg-gray-50 transition-colors"
+                className="w-full border border-gray-300 text-gray-700 py-3 rounded-xl font-medium hover:bg-gray-50 transition-colors"
               >
                 Back to Vehicle Details
               </button>
@@ -433,17 +408,17 @@ const Payment = () => {
                     // Just clear the session storage since no booking was created yet
                     sessionStorage.removeItem("bookingData");
                     alert("Booking cancelled successfully!");
-                    navigate("/available-vehicles");
+                    navigate("/vehicles");
                   }
                 }}
                 disabled={loading}
-                className="w-full bg-red-600 hover:bg-red-700 disabled:bg-gray-400 text-white py-3 rounded-lg transition-colors"
+                className="w-full bg-red-600 hover:bg-red-700 disabled:bg-gray-400 text-white py-3 rounded-xl font-medium transition-colors"
               >
                 {loading ? "Cancelling..." : "Cancel Booking"}
               </button>
               <button
                 onClick={() => navigate("/vehicles")}
-                className="w-full text-gray-600 py-2 hover:text-gray-800 transition-colors"
+                className="w-full text-gray-600 py-2 hover:text-gray-800 transition-colors text-sm font-medium"
               >
                 Back to Vehicles
               </button>
@@ -453,11 +428,11 @@ const Payment = () => {
             <div className="mt-6 text-xs text-gray-500 text-center">
               <p>
                 By proceeding with payment, you agree to our{" "}
-                <a href="#" className="text-red-600 hover:underline">
+                <a href="#" className="text-emerald-600 hover:underline">
                   Terms and Conditions
                 </a>{" "}
                 and{" "}
-                <a href="#" className="text-red-600 hover:underline">
+                <a href="#" className="text-emerald-600 hover:underline">
                   Privacy Policy
                 </a>
                 .

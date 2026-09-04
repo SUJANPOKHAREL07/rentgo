@@ -81,13 +81,13 @@ export const ResetPassword = () => {
           {/* Left Image */}
           <div className="relative h-64 overflow-hidden lg:h-auto">
             <img
-              src="/image/image-8.png"
-              alt="reset"
+              src="/image/signup_auth_car.png"
+              alt="Reset Password"
               className="absolute inset-0 h-full w-full object-cover"
             />
-            <div className="absolute bottom-6 left-6 lg:bottom-8 lg:left-8 z-10 text-white bg-gradient-red/50 w-full  p-4 rounded-l-xl">
-              <h1 className="text-2xl lg:text-4xl font-bold">Reset Password</h1>
-              <p className="text-sm lg:text-lg max-w-sm">
+            <div className="absolute bottom-6 left-6 lg:bottom-8 lg:left-8 z-10 text-white bg-emerald-950/75 backdrop-blur-sm w-full p-5 rounded-l-xl">
+              <h1 className="text-2xl lg:text-4xl font-bold font-heading">Reset Password</h1>
+              <p className="text-sm lg:text-lg max-w-sm text-emerald-100 mt-1">
                 Create a new password for your account.
               </p>
             </div>
@@ -96,36 +96,37 @@ export const ResetPassword = () => {
           {/* Right Form */}
           <div className="flex flex-col p-6 sm:p-10 lg:p-12 justify-center space-y-5">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+              <h1 className="text-3xl font-bold font-heading text-slate-900 mb-2">Create New Password</h1>
               <input
                 type="password"
                 placeholder="New Password"
                 {...register("newPassword")}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl outline-red"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl outline-0 focus:ring-2 focus:ring-emerald-500"
               />
               {errors.newPassword && (
-                <p className="text-red text-sm">{errors.newPassword.message}</p>
+                <p className="text-red-500 text-sm">{errors.newPassword.message}</p>
               )}
 
               <input
                 type="password"
                 placeholder="Confirm Password"
                 {...register("confirmPassword")}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl outline-red"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl outline-0 focus:ring-2 focus:ring-emerald-500"
               />
               {errors.confirmPassword && (
-                <p className="text-red text-sm">
+                <p className="text-red-500 text-sm">
                   {errors.confirmPassword.message}
                 </p>
               )}
 
-              {error && <p className="text-red text-sm">{error}</p>}
+              {error && <p className="text-red-500 text-sm">{error}</p>}
 
-              {success && <p className="text-green text-sm">{success}</p>}
+              {success && <p className="text-emerald-600 font-semibold text-sm">{success}</p>}
 
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-red hover:bg-gradient-red text-white py-3 px-6 rounded-xl font-semibold disabled:opacity-50"
+                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3.5 px-6 rounded-xl font-bold shadow-md shadow-emerald-600/20 disabled:opacity-50 transition"
               >
                 {isLoading ? "Resetting..." : "Reset Password"}
               </button>

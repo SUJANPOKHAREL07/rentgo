@@ -29,13 +29,13 @@ const PaymentFailure = () => {
         <div className="space-y-3">
           <button
             onClick={() => navigate("/payment")}
-            className="w-full px-6 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg shadow"
+            className="w-full px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-xl shadow-md shadow-emerald-600/20 transition"
           >
             Try Payment Again
           </button>
           <button
-            onClick={() => navigate("/available-vehicles")}
-            className="w-full px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+            onClick={() => navigate("/vehicles")}
+            className="w-full px-6 py-2.5 border border-gray-300 text-gray-700 font-medium rounded-xl hover:bg-gray-50 transition"
           >
             Back to Vehicles
           </button>
@@ -44,8 +44,8 @@ const PaymentFailure = () => {
         <div className="mt-6 text-xs text-gray-500">
           <p>
             Need help? Contact our support team at{" "}
-            <a href="mailto:support@vutungtung.com" className="text-red-600 hover:underline">
-              support@vutungtung.com
+            <a href="mailto:support@rentgo.com" className="text-emerald-600 hover:underline">
+              support@rentgo.com
             </a>
           </p>
         </div>

@@ -6,12 +6,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap");
 
 @theme {
-  /* ===== Colors ===== */
-  --color-red: #e63946;
-  --color-black: #121212;
-  --color-gradient-red: #8b0000;
+  /* ===== Premium Emerald Green & Crisp White Palette ===== */
+  --color-green: #059669;
+  --color-green-dark: #047857;
+  --color-green-light: #10b981;
+
+  /* Red mappings converted to Emerald Green */
+  --color-red: #059669;
+  --color-gradient-red: #047857;
+
+  --color-black: #0f172a;
   --color-white: #ffffff;
-  --color-light-gray: #f5f5f5;
+  --color-light-gray: #f8fafc;
 
   /* ===== Fonts ===== */
   --font-heading: "Orbitron", sans-serif;

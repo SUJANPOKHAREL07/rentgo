@@ -244,10 +244,10 @@
 //             <div className="bg-white shadow rounded-lg p-4 space-y-2">
 //               <h3 className="font-semibold text-gray-900 mb-2">Need Help?</h3>
 //               <p>Call Us: +1 (555) 123-4567</p>
-//               <p>Email Support: support@vutungtung.com</p>
+//               <p>Email Support: support@rentgo.com</p>
 //               <p>24/7 Support - We're here to help anytime</p>
 //             </div>
-
+//
 //             <div className="bg-white shadow rounded-lg p-4 space-y-2">
 //               <h3 className="font-semibold text-gray-900 mb-2">
 //                 Payment Summary
@@ -259,10 +259,10 @@
 //             </div>
 //           </div>
 //         </div>
-
+//
 //         {/* Footer */}
 //         <div className="mt-10 bg-red-50 p-6 rounded-lg text-center text-red-700">
-//           <p className="font-semibold">Thank You for Choosing VuTungTung!</p>
+//           <p className="font-semibold">Thank You for Choosing RentGo!</p>
 //           <p>
 //             We're excited to be part of your journey. Have a safe and enjoyable
 //             trip!
@@ -306,7 +306,7 @@ const BookingSuccessful = () => {
         </p>
         <button
           onClick={() => navigate("/my-bookings")}
-          className="px-6 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg shadow"
+          className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-md shadow-emerald-600/20 transition"
         >
           View My Bookings
         </button>

@@ -185,10 +185,10 @@ const PaymentSuccess = () => {
 
   if (verificationStatus === "verifying") {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4">
-        <div className="bg-white shadow-lg rounded-2xl p-8 text-center max-w-md w-full">
-          <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-red-600 mx-auto mb-4"></div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 px-4">
+        <div className="bg-white shadow-lg border border-slate-100 rounded-2xl p-8 text-center max-w-md w-full">
+          <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-emerald-600 mx-auto mb-4"></div>
+          <h2 className="text-2xl font-bold text-slate-900 mb-2 font-heading">
             Creating Booking...
           </h2>
           <p className="text-gray-600 mb-4">
@@ -201,10 +201,10 @@ const PaymentSuccess = () => {
 
   if (verificationStatus === "failed") {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4">
-        <div className="bg-white shadow-lg rounded-2xl p-8 text-center max-w-md w-full">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 px-4">
+        <div className="bg-white shadow-lg border border-slate-100 rounded-2xl p-8 text-center max-w-md w-full">
           <MdError className="text-red-500 text-6xl mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">
+          <h2 className="text-2xl font-bold text-slate-900 mb-2 font-heading">
             Payment Processing Failed
           </h2>
           <p className="text-gray-600 mb-4">
@@ -215,13 +215,13 @@ const PaymentSuccess = () => {
           <div className="space-y-3">
             <button
               onClick={() => navigate("/vehicles")}
-              className="w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition-colors"
+              className="w-full bg-emerald-600 text-white font-bold py-3.5 rounded-xl hover:bg-emerald-700 shadow-md shadow-emerald-600/20 transition-all"
             >
               Try Again
             </button>
             <button
               onClick={() => navigate("/user-dashboard")}
-              className="w-full border border-gray-300 text-gray-700 py-3 rounded-lg hover:bg-gray-50 transition-colors"
+              className="w-full border border-gray-300 text-gray-700 font-medium py-3 rounded-xl hover:bg-gray-50 transition-all"
             >
               Check My Bookings
             </button>
@@ -232,39 +232,39 @@ const PaymentSuccess = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4">
-      <div className="bg-white shadow-lg rounded-2xl p-8 text-center max-w-md w-full">
-        <MdCheckCircle className="text-green-500 text-6xl mx-auto mb-4" />
-        <h2 className="text-2xl font-bold text-gray-800 mb-2">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 px-4">
+      <div className="bg-white shadow-lg border border-slate-100 rounded-2xl p-8 text-center max-w-md w-full">
+        <MdCheckCircle className="text-emerald-500 text-6xl mx-auto mb-4" />
+        <h2 className="text-2xl font-bold text-slate-900 mb-2 font-heading">
           Payment Successful!
         </h2>
         <p className="text-gray-600 mb-4">
           Your booking has been confirmed and payment processed successfully.
         </p>
 
-        <div className="bg-gray-50 p-4 rounded-lg mb-6">
+        <div className="bg-emerald-50/50 border border-emerald-100 p-4 rounded-xl mb-6">
           {createdBookingId && (
-            <p className="text-sm text-gray-600">
-              <span className="font-semibold">Booking ID:</span>{" "}
+            <p className="text-sm text-gray-700">
+              <span className="font-semibold text-slate-900">Booking ID:</span>{" "}
               {createdBookingId}
             </p>
           )}
           {vehicleId && (
-            <p className="text-sm text-gray-600">
-              <span className="font-semibold">Vehicle ID:</span> {vehicleId}
+            <p className="text-sm text-gray-700">
+              <span className="font-semibold text-slate-900">Vehicle ID:</span> {vehicleId}
             </p>
           )}
           {refId && (
-            <p className="text-sm text-gray-600">
-              <span className="font-semibold">Transaction ID:</span> {refId}
+            <p className="text-sm text-gray-700">
+              <span className="font-semibold text-slate-900">Transaction ID:</span> {refId}
             </p>
           )}
           {amt && (
-            <p className="text-sm text-gray-600">
-              <span className="font-semibold">Amount Paid:</span> Rs. {amt}
+            <p className="text-sm text-gray-700">
+              <span className="font-semibold text-slate-900">Amount Paid:</span> Rs. {amt}
             </p>
           )}
-          <p className="text-sm text-green-600 font-semibold mt-2">
+          <p className="text-sm text-emerald-700 font-semibold mt-2">
             Payment Status: Completed | Delivery Status: Pending
           </p>
         </div>
@@ -272,13 +272,13 @@ const PaymentSuccess = () => {
         <div className="space-y-3">
           <button
             onClick={() => navigate("/user-dashboard")}
-            className="w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition-colors"
+            className="w-full bg-emerald-600 text-white font-bold py-3.5 rounded-xl hover:bg-emerald-700 shadow-md shadow-emerald-600/20 transition-all"
           >
             View My Bookings
           </button>
           <button
             onClick={() => navigate("/vehicles")}
-            className="w-full border border-gray-300 text-gray-700 py-3 rounded-lg hover:bg-gray-50 transition-colors"
+            className="w-full border border-gray-300 text-gray-700 font-medium py-3 rounded-xl hover:bg-gray-50 transition-all"
           >
             Book Another Vehicle
           </button>

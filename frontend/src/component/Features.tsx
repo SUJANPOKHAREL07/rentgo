@@ -21,11 +21,11 @@ const Features = () => {
       <div>
         <h1 className="text-4xl md:text-5xl text-center mb-5 font-black">
           FEATURED <br />
-          <span className="text-red">COLLECTION</span>
+          <span className="text-emerald-600">COLLECTION</span>
         </h1>
-        <p className="text-lg mb-20 text-gray-500 text-center">
-          Handcrafted selection of the world's most extraordinary vehicles. Each
-          one tells a story <br /> of performance, luxury, and innovation.
+        <p className="text-lg mb-16 text-gray-600 text-center max-w-2xl mx-auto">
+          Handcrafted selection of our top-performing rental vehicles. Each
+          one delivers performance, reliability, and ultimate driving comfort.
         </p>
 
         {/* feature cards */}
@@ -38,7 +38,7 @@ const Features = () => {
 
       <NavLink
         to={"/vehicles"}
-        className="border-2 text-xl w-fit mx-auto font-bold text-red mt-10 py-3 px-8 rounded-lg"
+        className="border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white font-bold text-lg w-fit mx-auto mt-12 py-3 px-8 rounded-xl transition duration-300 shadow-sm"
       >
         Discover All Vehicles
       </NavLink>

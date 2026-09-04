@@ -26,28 +26,29 @@ export const Sidebar = ({
   };
 
   const getClass = (page: string) =>
-    `p-3 rounded-md flex items-center gap-2 cursor-pointer transition ${
+    `p-3 rounded-xl flex items-center gap-2 cursor-pointer transition duration-200 ${
       activePage === page
-        ? "bg-red-100 border-l-[5px] border-red-500 text-red-500 font-medium"
-        : "hover:bg-red-500 hover:text-white"
+        ? "bg-emerald-50 border-l-[4px] border-emerald-600 text-emerald-700 font-semibold shadow-sm"
+        : "text-gray-700 hover:bg-emerald-600 hover:text-white"
     }`;
 
   return (
     <div
-      className={`fixed lg:static top-0 left-0 h-screen w-64 bg-white shadow flex flex-col transform transition-transform duration-300 z-40
+      className={`fixed lg:static top-0 left-0 h-screen w-64 bg-white shadow flex flex-col transform transition-transform duration-300 z-40 border-r border-slate-100
         ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
       `}
     >
       {/* Logo */}
-      <div className="flex justify-start h-[4.8rem] items-center border-b border-gray-200">
-        <div className="px-6 py-3 text-xl font-black text-red">
-          VUTING<span className="text-black">TUNG</span>
-          <p className="text-xs font-normal text-gray-500">Admin Portal</p>
+      <div className="flex justify-start h-[4.8rem] items-center border-b border-gray-200 px-6">
+        <div className="text-xl font-black font-heading tracking-wider">
+          <span className="text-emerald-600">RENT</span>
+          <span className="text-slate-900">GO</span>
+          <p className="text-xs font-normal text-gray-500 tracking-normal font-sans">Admin Portal</p>
         </div>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 mt-4 p-2">
+      <nav className="flex-1 mt-4 p-3">
         <ul className="space-y-2">
           <li
             onClick={() => handleSelect("Overview")}
@@ -99,13 +100,13 @@ export const Sidebar = ({
       </nav>
 
       {/* User Info */}
-      <div className="p-4 border-t border-gray-200 flex justify-center items-center gap-2">
-        <div className="h-12 w-12 bg-red-500 flex text-white rounded-full justify-center items-center">
+      <div className="p-4 border-t border-gray-200 flex justify-center items-center gap-3">
+        <div className="h-10 w-10 bg-emerald-600 flex text-white font-bold rounded-full justify-center items-center shadow-md shadow-emerald-600/20">
           AD
         </div>
         <div>
-          <p className="text-sm font-medium">Admin User</p>
-          <p className="text-xs text-gray-500">admin@vutungtung.com</p>
+          <p className="text-sm font-semibold text-slate-900">Admin User</p>
+          <p className="text-xs text-gray-500">admin@rentgo.com</p>
         </div>
       </div>
     </div>
