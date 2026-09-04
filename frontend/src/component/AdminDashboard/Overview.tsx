@@ -44,8 +44,8 @@ interface Stats {
 
 const Overview = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
-  const [vehicles, setVehicles] = useState<Vehicle[]>([]);
-  const [users, setUsers] = useState<User[]>([]);
+  const [_vehicles, setVehicles] = useState<Vehicle[]>([]);
+  const [_users, setUsers] = useState<User[]>([]);
   const [stats, setStats] = useState<Stats>({
     totalRevenue: 0,
     activeBookings: 0,

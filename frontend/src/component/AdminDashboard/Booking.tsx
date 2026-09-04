@@ -5,12 +5,12 @@ import { FaCheck, FaEye } from "react-icons/fa";
 import { FiX } from "react-icons/fi";
 import SearchFilter from "./SearchFilter";
 
-import type { Booking } from "../../types/booking";
+import type { Booking as BookingType } from "../../types/booking";
 import { getAllBookingsAdmin } from "../../api/api";
 import { cancelBookingAdmin, updateBookingPaymentStatus } from "../../api/bookingApi";
 
 const Booking = () => {
-  const [allBookings, setAllBookings] = useState<Booking[]>([]);
+  const [allBookings, setAllBookings] = useState<BookingType[]>([]);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("All");
   const [loading, setLoading] = useState(true);
@@ -22,11 +22,13 @@ const Booking = () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await getAllBookingsAdmin();
+        const response: any = await getAllBookingsAdmin();
 
         // Now TypeScript knows response.data.data exists
-        const bookingsArray = Array.isArray(response.data.data)
+        const bookingsArray = Array.isArray(response?.data?.data)
           ? response.data.data
+          : Array.isArray(response?.data)
+          ? response.data
           : [];
         setAllBookings(bookingsArray);
       } catch (err: any) {
@@ -43,9 +45,11 @@ const Booking = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await getAllBookingsAdmin();
-      const bookingsArray = Array.isArray(response.data.data)
+      const response: any = await getAllBookingsAdmin();
+      const bookingsArray = Array.isArray(response?.data?.data)
         ? response.data.data
+        : Array.isArray(response?.data)
+        ? response.data
         : [];
       setAllBookings(bookingsArray);
     } catch (err: any) {
@@ -72,7 +76,7 @@ const Booking = () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await cancelBookingAdmin(bookingId);
+      const response: any = await cancelBookingAdmin(bookingId);
       if (response.status === 200) {
         alert("Booking cancelled successfully!");
         refreshBookings(); // Refresh the list of bookings
@@ -94,7 +98,7 @@ const Booking = () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await updateBookingPaymentStatus(bookingId, "Paid");
+      const response: any = await updateBookingPaymentStatus(bookingId, "Paid");
       if (response.status === 200) {
         alert("Payment confirmed successfully!");
         refreshBookings(); // Refresh the list of bookings
