@@ -42,8 +42,9 @@
 
 // // src/api/vehicleApi.ts
 import type { NewVehicle, Vehicle, VehicleFront } from "../types/vehicle";
+import { API_BASE_URL } from "../config/api";
 
-const BASE_URL = "http://localhost:4000/api/vehicles";
+const BASE_URL = `${API_BASE_URL}/api/vehicles`;
 
 // Fetch all vehicles
 export const fetchVehicles = async (): Promise<Vehicle[]> => {

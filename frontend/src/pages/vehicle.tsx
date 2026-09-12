@@ -3,6 +3,7 @@ import axios from "axios";
 import { MdOutlineFilterAltOff } from "react-icons/md";
 import VehicleCard from "../component/VehicleCard";
 import Pagination from "../component/pagination";
+import { API_BASE_URL } from "../config/api";
 
 interface VehicleType {
   v_id: string | number;
@@ -43,7 +44,7 @@ const Vehicle = () => {
       try {
         setLoading(true);
         const response = await axios.get<VehicleType[]>(
-          "http://localhost:4000/api/vehicles/"
+          `${API_BASE_URL}/api/vehicles/`
         );
         setVehiclesData(response.data);
         setLoading(false);

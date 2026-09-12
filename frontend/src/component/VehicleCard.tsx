@@ -5,6 +5,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../config/api";
 
 interface VehicleCardProps {
   id: string;
@@ -50,7 +51,7 @@ const VehicleCard: React.FC<VehicleCardProps> = ({
     }
 
     // If it's a filename, convert to full backend URL
-    return `http://localhost:4000/uploads/vehicles/${img}`;
+    return `${API_BASE_URL}/uploads/vehicles/${img}`;
   };
 
   // ✅ Get all valid images

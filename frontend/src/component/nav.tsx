@@ -4,6 +4,7 @@ import { MdLogout } from "react-icons/md";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { RxCross2 } from "react-icons/rx";
+import { API_BASE_URL } from "../config/api";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +22,7 @@ const Nav = () => {
     setIsLoggingOut(true);
     try {
       // Call the logout API endpoint
-      const response = await fetch("http://localhost:4000/userlogout/", {
+      const response = await fetch(`${API_BASE_URL}/userlogout/`, {
         method: "POST",
         credentials: "include", // Include cookies/session
         headers: {

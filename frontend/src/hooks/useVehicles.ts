@@ -58,13 +58,13 @@
 
 import { useState, useEffect } from "react";
 import { type Vehicle, type VehicleFront } from "../types/vehicle"; // backend type // frontend type
+import { API_BASE_URL } from "../config/api";
 export const useVehicles = () => {
   const [vehicles, setVehicles] = useState<VehicleFront[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Put your backend URL here directly
-  const BASE_URL = "http://localhost:4000/api/vehicles"; // <-- replace with your API URL
+  const BASE_URL = `${API_BASE_URL}/api/vehicles`;
 
   useEffect(() => {
     const fetchVehicles = async () => {

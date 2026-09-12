@@ -83,10 +83,11 @@
 
 import axios from "axios";
 import type { Booking } from "../types/booking";
+import { API_BASE_URL } from "../config/api";
 
 // ✅ Create Axios instance
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "",
+  baseURL: API_BASE_URL,
   withCredentials: true,
 });
 
