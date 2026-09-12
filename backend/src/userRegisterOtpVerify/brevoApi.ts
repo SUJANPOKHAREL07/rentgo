@@ -25,7 +25,7 @@ export const sendMailViaAPI = async (
         },
       }
     );
-    console.log("✅ Email sent via Brevo API");
+    console.log("✅ Email accepted by Brevo API:", response.data);
     return response.data;
   } catch (error: any) {
     console.error("❌ Brevo API error:", error.response?.data || error.message);
