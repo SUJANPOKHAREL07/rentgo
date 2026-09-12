@@ -3,15 +3,36 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
 }
 
-model Category {
-  c_id    Int       @id @default(autoincrement())
-  name    String    @unique
-  Vehicle Vehicle[]
-  booking booking[]
+enum vechileType {
+  Automatic
+  Manual
+}
+
+model User {
+  userId          Int       @id @default(autoincrement())
+  username        String    @unique
+  email           String    @unique
+  verified        Boolean   @default(false)
+  otpVerify       String?   @default("")
+  otpExpired      DateTime?
+  updateOtp       String?
+  updateOtpExpire DateTime?
+
+  resetOtp        String?       @default("")
+  resetOtpExpired DateTime?
+  password        String
+  role            Role          @default(user)
+  createdAt       DateTime      @default(now())
+  updateAt        DateTime      @default(now())
+  Login           Login[]
+  // BookingInfo BookingInfo[]
+  BookingInfo     BookingInfo[]
+
+  @@map("user")
 }
 
 model Vehicle {
@@ -21,24 +42,53 @@ model Vehicle {
   model           String
   description     String?
   licensePlate    String              @unique
-  vin             String?             @unique
-  mileage         Int?
-  fuelType        VehicleFuelType     @default(PETROL)
-  transmission    VehicleTransmission @default(MANUAL)
+  vin             String?             @unique // optional vehicle identification number
+  mileage         Int? // in kilometers
+  fuelType        VehicleFuelType     @default(PETROL) // Gasoline, Diesel, Electric, Hybrid
+  transmission    VehicleTransmission @default(MANUAL) // Manual, Automatic
   seatingCapacity Int
   dailyRate       Decimal             @db.Decimal(10, 2)
   status          VehicleStatus       @default(AVAILABLE)
-  image           String?
+  image           String? // <-- file path for the vehicle image
   image1          String?
   image2          String?
   categoryId      Int
-  createdAt       DateTime            @default(now())
-  updatedAt       DateTime
-  Category        Category            @relation(fields: [categoryId], references: [c_id])
-  booking         booking[]
+  category        Category            @relation(fields: [categoryId], references: [c_id])
+
+  // rentals Rental[] // relation to rental records
+
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  BookingInfo BookingInfo[]
 }
 
-model admin {
+model Category {
+  c_id        Int           @id @default(autoincrement())
+  name        String        @unique
+  vehicles    Vehicle[]
+  BookingInfo BookingInfo[]
+}
+
+enum VehicleStatus {
+  AVAILABLE
+  RENTED
+  MAINTENANCE
+  UNAVAILABLE
+}
+
+enum VehicleFuelType {
+  PETROL
+  DIESEL
+  ELECTRIC
+  HYBRID
+}
+
+enum VehicleTransmission {
+  MANUAL
+  AUTOMATIC
+}
+
+model Admin {
   adminId    Int      @id @default(autoincrement())
   ownername  String   @unique
   email      String   @unique
@@ -47,12 +97,35 @@ model admin {
   otpVerify  String?  @default("")
   otpExpired BigInt?
   createdAt  DateTime @default(now())
-  updatedAt  DateTime
+  updatedAt  DateTime @updatedAt()
   role       Role     @default(admin)
-  login      login[]
+  Login      Login[]
+  // BookingInfo BookingInfo[]
+
+  @@map("admin")
 }
 
-model booking {
+enum Role {
+  user
+  admin
+  superadmin
+}
+
+model Login {
+  loginId      Int    @id @default(autoincrement())
+  userId       Int?
+  user         User?  @relation(fields: [userId], references: [userId])
+  adminId      Int?
+  admin        Admin? @relation(fields: [adminId], references: [adminId])
+  refreshToken String @unique
+  email        String
+  password     String
+  role         Role
+
+  @@map("login")
+}
+
+model BookingInfo {
   bookingId      Int            @id @default(autoincrement())
   bookingDate    DateTime
   returnDate     DateTime
@@ -70,48 +143,13 @@ model booking {
   paymentMethod  PaymentMethod  @default(cashOnDelivery)
   paymentStatus  Payment        @default(pending)
   deliverystatus DeliveryStatus @default(pending)
+  User           User           @relation(fields: [useremail], references: [email])
+  category       Category?      @relation(fields: [categoryId], references: [c_id])
+  Vehicle        Vehicle?       @relation(fields: [vehicleId], references: [v_id])
   createdAt      DateTime       @default(now())
   updateAt       DateTime       @default(now())
-  Category       Category       @relation(fields: [categoryId], references: [c_id])
-  user           user           @relation(fields: [useremail], references: [email])
-  Vehicle        Vehicle        @relation(fields: [vehicleId], references: [v_id])
-}
 
-model login {
-  loginId      Int    @id @default(autoincrement())
-  userId       Int?
-  adminId      Int?
-  refreshToken String @unique
-  email        String
-  password     String
-  role         Role
-  admin        admin? @relation(fields: [adminId], references: [adminId])
-  user         user?  @relation(fields: [userId], references: [userId])
-}
-
-model user {
-  userId          Int       @id @default(autoincrement())
-  username        String    @unique
-  email           String    @unique
-  verified        Boolean   @default(false)
-  otpVerify       String?   @default("")
-  otpExpired      DateTime?
-  updateOtp       String?
-  updateOtpExpire DateTime?
-  resetOtp        String?   @default("")
-  resetOtpExpired DateTime?
-  password        String
-  role            Role      @default(user)
-  createdAt       DateTime  @default(now())
-  updateAt        DateTime  @default(now())
-  booking         booking[]
-  login           login[]
-}
-
-enum DeliveryStatus {
-  pending
-  dilivered
-  cancled
+  @@map("booking")
 }
 
 enum Payment {
@@ -120,39 +158,15 @@ enum Payment {
   completed
 }
 
+enum DeliveryStatus {
+  pending
+  dilivered
+  cancled
+}
+
 enum PaymentMethod {
   eSewa
   khalti
   fonePay
   cashOnDelivery
-}
-
-enum Role {
-  user
-  admin
-  superadmin
-}
-
-enum VehicleFuelType {
-  PETROL
-  DIESEL
-  ELECTRIC
-  HYBRID
-}
-
-enum VehicleStatus {
-  AVAILABLE
-  RENTED
-  MAINTENANCE
-  UNAVAILABLE
-}
-
-enum VehicleTransmission {
-  MANUAL
-  AUTOMATIC
-}
-
-enum vechileType {
-  Automatic
-  Manual
 }
