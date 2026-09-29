@@ -102,7 +102,7 @@ export const updatePasswordService = {
                     <!-- Logo Section -->
                     <tr>
                         <td class="logo">
-                            <h1>VutunTung</h1>
+                            <h1>RentGo</h1>
                         </td>
                     </tr>
                     
@@ -128,14 +128,14 @@ export const updatePasswordService = {
                     <!-- Support Section -->
                     <tr>
                         <td class="support">
-                            <p>Need help? Contact our support team at <a href="mailto:support@vutungtung.com">support@vutungtun.com</a></p>
+                            <p>Need help? Contact our support team at <a href="mailto:support@rentogo.com">support@rentgo.com</a></p>
                         </td>
                     </tr>
                     
                     <!-- Footer -->
                     <tr>
                         <td class="footer">
-                            <p>© 2023 VutungTung All rights reserved.</p>
+                            <p>© 2023 RentGo All rights reserved.</p>
                             <p>123 Business Street, City, State 12345</p>
                             <p>
                                 <a href="#">Unsubscribe</a> | 

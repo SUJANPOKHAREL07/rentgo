@@ -4,14 +4,14 @@ import axios from "axios";
 export const sendMailViaAPI = async (
   to: string,
   subject: string,
-  html: string
+  html: string,
 ) => {
   try {
     const response = await axios.post(
       "https://api.brevo.com/v3/smtp/email",
       {
         sender: {
-          name: "Vutungtung-Rental",
+          name: "Rento Go",
           email: process.env.SENDER_EMAIL,
         },
         to: [{ email: to }],
@@ -23,7 +23,7 @@ export const sendMailViaAPI = async (
           "api-key": process.env.BREVO_API_KEY,
           "Content-Type": "application/json",
         },
-      }
+      },
     );
     console.log("✅ Email accepted by Brevo API:", response.data);
     return response.data;
