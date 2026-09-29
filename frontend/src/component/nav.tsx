@@ -103,7 +103,7 @@ const Nav = () => {
                   All Vehicles
                 </NavLink>
 
-                <NavLink
+                {/* <NavLink
                   to="/about"
                   className={({ isActive }) =>
                     `relative transition-colors duration-200 hover:text-emerald-600 ${
@@ -114,7 +114,7 @@ const Nav = () => {
                   }
                 >
                   About
-                </NavLink>
+                </NavLink> */}
 
                 <NavLink
                   to="/contact"
